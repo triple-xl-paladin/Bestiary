@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">DND 5e Bestiary</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="ac_string">AC</string>
+
+
+    <string name="str_string">STR</string>
+    <string name="dex_string">DEX</string>
+    <string name="con_string">CON</string>
+    <string name="int_string">INT</string>
+    <string name="wis_string">WIS</string>
+    <string name="cha_string">CHA</string>
+
+    <string name="actions_string">Actions</string>
+    <string name="speed_string">Speed</string>
+    <string name="hp_string">HP</string>
+    <string name="saving_throws_string">Saving Throws</string>
+    <string name="senses_string">Senses</string>
+    <string name="passive_perc_string">Passive Perception</string>
+    <string name="resist_string">Resistance</string>
+    <string name="mimmune_string">Damage Immunities</string>
+    <string name="condition_immune_string">Condition Immunities</string>
+    <string name="vulnerable_string">Damage Vulnerabilities</string>
+    <string name="skills_string">Skills</string>
+    <string name="languages_string">Languages</string>
+    <string name="cr_string">CR</string>
+</resources>
