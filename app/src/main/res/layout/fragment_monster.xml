@@ -517,6 +517,13 @@
         </LinearLayout>
 
         <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/reactions_llm">
+        </LinearLayout>
+
+        <LinearLayout
             android:id="@+id/legendary_llm"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

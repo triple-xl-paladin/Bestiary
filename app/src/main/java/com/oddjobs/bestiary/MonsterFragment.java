@@ -38,6 +38,9 @@ public class MonsterFragment extends Fragment
   private ArrayList<String> legendary_names;
   private ArrayList<String> legendary_texts;
 
+  private ArrayList<String> reaction_names;
+  private ArrayList<String> reaction_texts;
+
   private DBHandler dbHandler;
 
   public MonsterFragment()
@@ -62,6 +65,7 @@ public class MonsterFragment extends Fragment
     createTraits(view);
     createActions(view);
     createLegendary(view);
+    createReactions(view);
     createFooter(view);
 
     return view;
@@ -308,6 +312,59 @@ public class MonsterFragment extends Fragment
     }
   }
 
+  private void createReactions(View view)
+  {
+    getReactions();
+
+    if (reaction_names.size() != 0)
+    {
+      String prev_reaction_header = null;
+
+      LinearLayout reactions_llm = (LinearLayout) view.findViewById(R.id.reactions_llm);
+
+      // Legendary Actions header
+      TextView reaction_header_view = new TextView(getContext());
+      reaction_header_view.setText("Reactions");
+      // width height
+      reaction_header_view.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+      reaction_header_view.setTypeface(reaction_header_view.getTypeface(), Typeface.BOLD);
+      reaction_header_view.setTextColor(ContextCompat.getColor(getActivity().getApplicationContext(), R.color.dndColourRed));
+      reaction_header_view.setTextSize(18);
+      // left top right bottom
+      reaction_header_view.setPadding(0, convertDP(5), 0, 0);
+      reactions_llm.addView(reaction_header_view);
+      reactions_llm.addView(createHorizontalBar());
+
+      //Log.d("MonsFragment","Action size="+action_names.size());
+      for (int i = 0; i < reaction_names.size(); i++)
+      {
+        //Log.d("MonsFragment","i="+i);
+        String reaction_header = reaction_names.get(i);
+
+        if (!reaction_header.equals(prev_reaction_header))
+        {
+          TextView reaction_name_view = new TextView(getContext());
+          reaction_name_view.setText(reaction_names.get(i));
+          reaction_name_view.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+          reaction_name_view.setLinkTextColor(ContextCompat.getColor(getActivity().getApplicationContext(), R.color.dndColourGrey));
+          reaction_name_view.setTypeface(reaction_name_view.getTypeface(), Typeface.BOLD);
+          // left top right bottom
+          reaction_name_view.setPadding(0, convertDP(5), 0, 0);
+          reactions_llm.addView(reaction_name_view);
+          prev_reaction_header = reaction_header;
+        }
+
+        TextView reaction_text_view = new TextView(getContext());
+        reaction_text_view.setText(reaction_texts.get(i));
+        reaction_text_view.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        reaction_text_view.setLinkTextColor(ContextCompat.getColor(getActivity().getApplicationContext(), R.color.dndColourGrey));
+        // left top right bottom
+        reaction_text_view.setPadding(0, 0, 0, convertDP(5));
+        reactions_llm.addView(reaction_text_view);
+      }
+    }
+  }
+
   private View createHorizontalBar()
   {
     ImageView horiz_bar_iv = new ImageView(getContext());
@@ -490,6 +547,41 @@ public class MonsterFragment extends Fragment
     {
       legendary_names.add(recordSet.getString(recordSet.getColumnIndex("legendary_name")));
       legendary_texts.add(recordSet.getString(recordSet.getColumnIndex("legendary_text")));
+      recordSet.moveToNext();
+    }
+    // Apparently you need to close the Cursor to free RAM.
+    recordSet.close();
+
+    dbHandler.closeDatabase();
+  }
+
+  private void getReactions()
+  {
+    reaction_names = new ArrayList<String>();
+    reaction_texts = new ArrayList<String>();
+
+    String sql = "SELECT " +
+        "reaction_name " +
+        ",reaction_text " +
+        "from vw_reactions " +
+        "where monster_id='" + monsterID + "'";
+
+    Cursor recordSet = null;
+
+    dbHandler = new DBHandler(getActivity().getApplicationContext());
+
+    dbHandler.openDatabase();
+    recordSet = dbHandler.executeQuerySQL(sql);
+
+    int rows = recordSet.getCount();
+    //Log.d("MonsFrag", "row count=" + rows);
+
+    recordSet.moveToFirst();
+
+    for (int i = 0; i < rows; i++)
+    {
+      reaction_names.add(recordSet.getString(recordSet.getColumnIndex("reaction_name")));
+      reaction_texts.add(recordSet.getString(recordSet.getColumnIndex("reaction_text")));
       recordSet.moveToNext();
     }
     // Apparently you need to close the Cursor to free RAM.
