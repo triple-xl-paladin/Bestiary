@@ -12,11 +12,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.oddjobs.bestiary.db.DBHandler;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
+import java.util.List;
+import java.util.zip.Inflater;
 
 
 /**
@@ -59,10 +64,11 @@ public class MonsterFragment extends Fragment
     //Log.d("MonsterFragment","MonsterID="+monsterID);
 
     // Inflate the layout for this fragment
+    //View view = inflater.inflate(R.layout.fragment_monster, container, false);
     View view = inflater.inflate(R.layout.fragment_monster, container, false);
     createHeader(view);
     createStats(view);
-    createTraits(view);
+    createTraits(view, inflater, container);
     createActions(view);
     createLegendary(view);
     createReactions(view);
@@ -151,9 +157,11 @@ public class MonsterFragment extends Fragment
 
   }
 
-  private void createTraits(View view)
+  private void createTraits(View view, LayoutInflater inflater, ViewGroup container)
   {
     getTraits();
+
+    //List trait_tvs = new ArrayList<TextView>();
 
     if(trait_names.size()!=0)
     {
@@ -161,34 +169,80 @@ public class MonsterFragment extends Fragment
 
       LinearLayout traits_llm = (LinearLayout) view.findViewById(R.id.traits_llm);
 
-      //Log.d("MonsFragment","Trait size="+trait_names.size());
+      Log.d("MonsFragment","Trait size before for loop="+trait_names.size());
       for (int i = 0; i < trait_names.size(); i++)
       {
-        //Log.d("MonsFragment","i="+i);
+        Log.d("MonsFragment","i counter="+i);
+
+        //Log.d("MonsFrag","Create the relativelayout layoutparams");
+        //RelativeLayout.LayoutParams p = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
         String trait_header = trait_names.get(i);
         // Don't repeat header if it is same
         if (!trait_header.equals(prev_trait_header))
         {
+          Log.d("MonsFrag","The header is not the same as the last one. Create a new TextView");
           TextView traits_name_view = new TextView(getContext());
+          //Log.d("MonsFrag","Set the id for the text view to="+trait_tvs.size());
+          Log.d("MonsFrag","Set the text for the text view to="+trait_header);
+          //traits_name_view.setId(trait_tvs.size());
           traits_name_view.setText(trait_header);
-          traits_name_view.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+
+          /*
+          Log.d("monsFrag","What size is traits_tvs?="+trait_tvs.size());
+          if(trait_tvs.size()==0)
+          {
+            Log.d("MonsFrag","If traits_tvs is 0 then add below red horiz line");
+            p.addRule(RelativeLayout.BELOW, R.id.red_horiz_line4);
+          }
+          else
+          {
+            Log.d("MonsFrag","Already a trait textview and traits_tvs_size="+trait_tvs.size());
+            TextView tmp = (TextView) trait_tvs.get(trait_tvs.size()-1);
+            p.addRule(RelativeLayout.BELOW, tmp.getId());
+            Log.d("MonsFrag","TextView id="+tmp.getId()+" TextView text="+tmp.getText());
+          }
+
+
+          Log.d("MonsFrag","add layout params to text view");
+          traits_name_view.setLayoutParams(p);
+          */
+          Log.d("MonsFrag","Set colours and typeface");
           traits_name_view.setLinkTextColor(ContextCompat.getColor(getActivity().getApplicationContext(), R.color.dndColourGrey));
           traits_name_view.setTypeface(traits_name_view.getTypeface(), Typeface.BOLD);
           // left top right bottom
           traits_name_view.setPadding(0, 5, 0, 0);
           traits_llm.addView(traits_name_view);
+          Log.d("MonsFrag","prev_trait_header before setting trait_header="+prev_trait_header);
           prev_trait_header = trait_header;
+          Log.d("MonsFrag","prev_trait_header after setting trait_header="+prev_trait_header);
+          Log.d("MonsFrag","adding TextView to trait_tvs");
+          //trait_tvs.add(traits_name_view);
         }
 
+        //Log.d("MonsFRag","Traits TVS size after header code="+trait_tvs.size());
+
         TextView traits_text_view = new TextView(getContext());
+        //Log.d("MonsFrag","Setting traits_text_view id="+trait_tvs.size()+" and trait_text as="+trait_texts.get(i));
+        //traits_text_view.setId(trait_tvs.size());
         traits_text_view.setText(trait_texts.get(i));
-        traits_text_view.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+
+        //Log.d("MonsFrag","Create the relativelayout layoutparams for traits_text_view");
+        //RelativeLayout.LayoutParams x = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+
+        //TextView tmp2 = (TextView) trait_tvs.get(trait_tvs.size()-1);
+        //p.removeRule(RelativeLayout.BELOW);
+        //x.addRule(RelativeLayout.BELOW, tmp2.getId());
+
+        //Log.d("MonsFrag","Adding tmp2 text getid="+tmp2.getId()+" with text as="+tmp2.getText());
+        //traits_text_view.setLayoutParams(x);
         traits_text_view.setLinkTextColor(ContextCompat.getColor(getActivity().getApplicationContext(), R.color.dndColourGrey));
         // left top right bottom
         traits_text_view.setPadding(0, 0, 0, 5);
         traits_llm.addView(traits_text_view);
+        //trait_tvs.add(traits_text_view);
 
+        //Log.d("MonsFRag","End Traits TVS="+trait_tvs.size());
       /* Not convinced this is needed
       if(trait_attacks.get(i) != null)
       {
@@ -202,12 +256,23 @@ public class MonsterFragment extends Fragment
         traits_llm.addView(traits_att_view);
       } */
       }
+
+      /*
+      for(int i=0; i<trait_tvs.size();i++)
+      {
+        TextView result = (TextView) trait_tvs.get(i);
+        Log.d("MonsFrag","The current id="+result.getId()+" and the current tex="+result.getText());
+        traits_llm.addView((TextView) trait_tvs.get(i));
+      }
+      */
     }
   }
 
   private void createActions(View view)
   {
     getActions();
+
+    //List act_tvs = new ArrayList<TextView>();
 
     if(action_names.size()!=0)
     {
@@ -225,22 +290,42 @@ public class MonsterFragment extends Fragment
         {
           TextView actions_name_view = new TextView(getContext());
           actions_name_view.setText(action_name_header);
-          actions_name_view.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+          //RelativeLayout.LayoutParams p = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+
+          /*
+          if(act_tvs.size()==0)
+          {
+            p.addRule(RelativeLayout.BELOW, R.id.actions_header_tv);
+          }
+          else
+          {
+            TextView tmp = (TextView) act_tvs.get(i-1);
+            p.addRule(RelativeLayout.BELOW, tmp.getId());
+          }
+
+          actions_name_view.setLayoutParams(p);
+          */
           actions_name_view.setLinkTextColor(ContextCompat.getColor(getActivity().getApplicationContext(), R.color.dndColourGrey));
           actions_name_view.setTypeface(actions_name_view.getTypeface(), Typeface.BOLD);
           // left top right bottom
           actions_name_view.setPadding(0, 5, 0, 0);
           actions_llm.addView(actions_name_view);
+          //act_tvs.add(actions_name_view);
           prev_action_header = action_name_header;
         }
 
         TextView actions_text_view = new TextView(getContext());
         actions_text_view.setText(action_texts.get(i));
-        actions_text_view.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+
+        //RelativeLayout.LayoutParams p = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        //TextView tmp = (TextView) act_tvs.get(i);
+        //p.addRule(RelativeLayout.BELOW, tmp.getId());
+        //actions_text_view.setLayoutParams(p);
         actions_text_view.setLinkTextColor(ContextCompat.getColor(getActivity().getApplicationContext(), R.color.dndColourGrey));
         // left top right bottom
         actions_text_view.setPadding(0, 0, 0, 5);
         actions_llm.addView(actions_text_view);
+        //act_tvs.add(actions_text_view);
 
       /* Not convinced this is needed
       if(action_attacks.get(i) != null)
@@ -256,6 +341,13 @@ public class MonsterFragment extends Fragment
       }
       */
       }
+
+      /*
+      for (int i=0;i<act_tvs.size();i++)
+      {
+        actions_llm.addView((TextView) act_tvs.get(i));
+      }
+      */
     }
   }
 

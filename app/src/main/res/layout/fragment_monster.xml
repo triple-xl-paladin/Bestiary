@@ -14,7 +14,7 @@
             android:id="@+id/monster_name_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Galeb Duhr"
+            android:text="@string/default_txt"
             android:textSize="18sp"
             android:textStyle="normal|bold"/>
 
@@ -22,14 +22,15 @@
             android:id="@+id/mtype_alignment_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Medium elemental, neutral"
+            android:text="@string/default_txt"
             android:textStyle="normal|italic"/>
 
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="match_parent"
             android:layout_height="5dp"
-            app:srcCompat="@color/dndColourRed"/>
+            app:srcCompat="@color/dndColourRed"
+            android:contentDescription="@string/red_horizontal_bar"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -41,16 +42,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingRight="5dp"
+                android:paddingStart="0dp"
                 android:text="@string/ac_string"
                 android:textColor="@color/dndColourRed"
                 android:textStyle="normal|bold"/>
 
             <TextView
                 android:id="@+id/mac_tv"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="TextView"/>
+                android:text="@string/default_txt"
+                android:contentDescription="@string/red_horizontal_bar"/>
 
         </LinearLayout>
 
@@ -63,6 +66,7 @@
                 android:id="@+id/mhp_header_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:paddingStart="0dp"
                 android:paddingRight="5dp"
                 android:text="@string/hp_string"
                 android:textColor="@color/dndColourRed"
@@ -70,10 +74,10 @@
 
             <TextView
                 android:id="@+id/mhp_tv"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="TextView"/>
+                android:text="@string/default_txt"/>
         </LinearLayout>
 
         <LinearLayout
@@ -85,6 +89,7 @@
                 android:id="@+id/mspeed_header_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:paddingStart="0dp"
                 android:paddingRight="5dp"
                 android:text="@string/speed_string"
                 android:textColor="@color/dndColourRed"
@@ -92,17 +97,18 @@
 
             <TextView
                 android:id="@+id/mspeed_tv"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="TextView"/>
+                android:text="@string/default_txt"/>
         </LinearLayout>
 
         <ImageView
             android:id="@+id/imageView2"
             android:layout_width="match_parent"
             android:layout_height="5dp"
-            app:srcCompat="@color/dndColourRed"/>
+            app:srcCompat="@color/dndColourRed"
+            android:contentDescription="@string/red_horizontal_bar"/>
 
         <TableLayout
             android:layout_width="match_parent"
@@ -193,7 +199,7 @@
                     android:layout_height="wrap_content"
                     android:paddingLeft="5dp"
                     android:paddingRight="5dp"
-                    android:text="TextView"
+                    android:text="@string/default_txt"
                     android:textAlignment="center"
                     />
 
@@ -203,7 +209,7 @@
                     android:layout_height="wrap_content"
                     android:paddingLeft="5dp"
                     android:paddingRight="5dp"
-                    android:text="TextView"
+                    android:text="@string/default_txt"
                     android:textAlignment="center"
                     />
 
@@ -213,7 +219,7 @@
                     android:layout_height="wrap_content"
                     android:paddingLeft="5dp"
                     android:paddingRight="5dp"
-                    android:text="TextView"
+                    android:text="@string/default_txt"
                     android:textAlignment="center"
                     />
 
@@ -223,7 +229,7 @@
                     android:layout_height="wrap_content"
                     android:paddingLeft="5dp"
                     android:paddingRight="5dp"
-                    android:text="TextView"
+                    android:text="@string/default_txt"
                     android:textAlignment="center"
                     />
 
@@ -233,7 +239,7 @@
                     android:layout_height="wrap_content"
                     android:paddingLeft="5dp"
                     android:paddingRight="5dp"
-                    android:text="TextView"
+                    android:text="@string/default_txt"
                     android:textAlignment="center"
                     />
 
@@ -243,7 +249,7 @@
                     android:layout_height="wrap_content"
                     android:paddingLeft="5dp"
                     android:paddingRight="5dp"
-                    android:text="TextView"
+                    android:text="@string/default_txt"
                     android:textAlignment="center"
                     />
             </TableRow>
@@ -254,7 +260,8 @@
             android:id="@+id/imageView3"
             android:layout_width="match_parent"
             android:layout_height="5dp"
-            app:srcCompat="@color/dndColourRed"/>
+            app:srcCompat="@color/dndColourRed"
+            android:contentDescription="@string/red_horizontal_bar"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -265,14 +272,15 @@
                 android:id="@+id/msave_header_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingRight="5dp"
+                android:paddingStart="0dp"
+                android:paddingEnd="5dp"
                 android:text="@string/saving_throws_string"
                 android:textColor="@color/dndColourRed"
                 android:textStyle="normal|bold"/>
 
             <TextView
                 android:id="@+id/msave_tv"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="TextView"/>
@@ -287,6 +295,7 @@
                 android:id="@+id/msenses_header_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:paddingLeft="0dp"
                 android:paddingRight="5dp"
                 android:text="@string/senses_string"
                 android:textColor="@color/dndColourRed"
@@ -294,7 +303,7 @@
 
             <TextView
                 android:id="@+id/msenses_tv"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="TextView"/>
@@ -310,6 +319,7 @@
                 android:id="@+id/mpassive_header_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:paddingLeft="0dp"
                 android:paddingRight="5dp"
                 android:text="@string/passive_perc_string"
                 android:textColor="@color/dndColourRed"
@@ -317,7 +327,7 @@
 
             <TextView
                 android:id="@+id/mpassive_perception_tv"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="TextView"/>
@@ -332,6 +342,7 @@
                 android:id="@+id/mresists_header_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:paddingLeft="0dp"
                 android:paddingRight="5dp"
                 android:text="@string/resist_string"
                 android:textColor="@color/dndColourRed"
@@ -339,7 +350,7 @@
 
             <TextView
                 android:id="@+id/mresist_tv"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="TextView"/>
@@ -354,6 +365,7 @@
                 android:id="@+id/mimmune_header_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:paddingLeft="0dp"
                 android:paddingRight="5dp"
                 android:text="@string/mimmune_string"
                 android:textColor="@color/dndColourRed"
@@ -361,7 +373,7 @@
 
             <TextView
                 android:id="@+id/mimmune_tv"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="TextView"/>
@@ -376,6 +388,7 @@
                 android:id="@+id/mcondition_imm_header_rv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:paddingLeft="0dp"
                 android:paddingRight="5dp"
                 android:text="@string/condition_immune_string"
                 android:textColor="@color/dndColourRed"
@@ -383,7 +396,7 @@
 
             <TextView
                 android:id="@+id/mcondition_immune_tv"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="TextView"/>
@@ -399,6 +412,7 @@
                 android:id="@+id/mvulberable_header_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:paddingLeft="0dp"
                 android:paddingRight="5dp"
                 android:text="@string/vulnerable_string"
                 android:textColor="@color/dndColourRed"
@@ -406,7 +420,7 @@
 
             <TextView
                 android:id="@+id/mvulnerable_tv"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="TextView"/>
@@ -421,6 +435,7 @@
                 android:id="@+id/mskills_header_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:paddingLeft="0dp"
                 android:paddingRight="5dp"
                 android:text="@string/skills_string"
                 android:textColor="@color/dndColourRed"
@@ -428,7 +443,7 @@
 
             <TextView
                 android:id="@+id/mskills_tv"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="TextView"/>
@@ -443,6 +458,7 @@
                 android:id="@+id/mlanguages_header_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:paddingLeft="0dp"
                 android:paddingRight="5dp"
                 android:text="@string/languages_string"
                 android:textColor="@color/dndColourRed"
@@ -450,7 +466,7 @@
 
             <TextView
                 android:id="@+id/mlanguages_tv"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="TextView"/>
@@ -465,6 +481,7 @@
                 android:id="@+id/mcr_header_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:paddingLeft="0dp"
                 android:paddingRight="5dp"
                 android:text="@string/cr_string"
                 android:textColor="@color/dndColourRed"
@@ -472,7 +489,7 @@
 
             <TextView
                 android:id="@+id/mcr_tv"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="TextView"/>
@@ -482,7 +499,8 @@
             android:id="@+id/imageView4"
             android:layout_width="match_parent"
             android:layout_height="5dp"
-            app:srcCompat="@color/dndColourRed"/>
+            app:srcCompat="@color/dndColourRed"
+            android:contentDescription="@string/red_horizontal_bar"/>
 
         <LinearLayout
             android:id="@+id/traits_llm"
@@ -496,6 +514,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingTop="5dp"
+            android:paddingBottom="0dp"
             android:text="@string/actions_string"
             android:textColor="@color/dndColourRed"
             android:textSize="18sp"
@@ -506,7 +525,7 @@
             android:layout_width="match_parent"
             android:layout_height="5dp"
             app:srcCompat="@color/dndColourRed"
-            />
+            android:contentDescription="@string/red_horizontal_bar"/>
 
         <LinearLayout
             android:id="@+id/actions_llm"
@@ -534,7 +553,8 @@
             android:id="@+id/description_horiz_bar_vi"
             android:layout_width="match_parent"
             android:layout_height="5dp"
-            app:srcCompat="@color/dndColourRed"/>
+            app:srcCompat="@color/dndColourRed"
+            android:contentDescription="@string/red_horizontal_bar"/>
 
         <TextView
             android:id="@+id/mdescription_tv"

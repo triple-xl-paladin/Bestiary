@@ -1,9 +1,10 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="vertical"
-              tools:context="com.oddjobs.bestiary.BestiaryListFragment">
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.oddjobs.bestiary.BestiaryListFragment">
 
     <!-- TODO: Update blank fragment layout -->
 
@@ -15,9 +16,10 @@
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/bestiary_list_recyclerview"
+        android:layout_below="@+id/monster_searchview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
     </android.support.v7.widget.RecyclerView>
-</LinearLayout>
+</RelativeLayout>
 

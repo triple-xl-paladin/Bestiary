@@ -27,4 +27,7 @@
     <string name="skills_string">Skills</string>
     <string name="languages_string">Languages</string>
     <string name="cr_string">CR</string>
+
+    <string name="default_txt">default text</string>
+    <string name="red_horizontal_bar">red horizontal bar</string>
 </resources>
